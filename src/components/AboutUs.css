@@ -1,0 +1,117 @@
+/* src/components/AboutUs.css */
+
+.about-section {
+  background-color: #f3f4f6;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+}
+
+.about-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.about-section h2 {
+  color: var(--color-primary-dark);
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  font-size: 40px;
+  font-family: "Merriweather", serif;
+}
+
+.about-content-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.about-text-content {
+  flex: 2;
+  min-width: 300px;
+}
+
+.about-image-wrapper {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.about-image {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: var(--border-radius-lg);
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.btn-about {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+}
+
+.btn-about:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.about-section p.about-text {
+  color: var(--color-text);
+  line-height: 1.7;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .about-section h2 {
+    font-size: 32px;
+  }
+
+  .about-text-content {
+    text-align: center;
+  }
+
+  .about-section p.about-text {
+    font-size: 1rem;
+  }
+
+  .about-image-wrapper {
+    order: 2;
+  }
+
+  .about-image {
+    max-width: 350px;
+    margin-top: 1rem;
+  }
+}
+
+.about-text-content,
+.about-image-wrapper {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.about-section.is-visible .about-text-content,
+.about-section.is-visible .about-image-wrapper {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-section.is-visible .about-text-content {
+  transition-delay: 0.1s;
+}
+.about-section.is-visible .about-image-wrapper {
+  transition-delay: 0.2s;
+}

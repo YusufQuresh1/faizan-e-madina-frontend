@@ -1,0 +1,65 @@
+.site-footer {
+  background-color: var(
+    --color-text
+  ); /* Uses the soft dark grey from our theme */
+  color: rgba(255, 255, 255, 0.8);
+  padding: 3rem var(--spacing-md);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 280px;
+}
+
+.site-footer h4 {
+  color: var(--color-white);
+  font-family: var(--font-family-base);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+.site-footer p {
+  color: rgba(255, 255, 255, 0.8);
+  text-align: left;
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.contact-list a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.contact-list a:hover {
+  color: var(--color-white);
+}
+
+.footer-copyright {
+  text-align: center;
+  padding-top: 2rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}

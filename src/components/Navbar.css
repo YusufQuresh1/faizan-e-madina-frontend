@@ -1,0 +1,262 @@
+.navbar {
+  background-image: linear-gradient(to right, #024e39, #2ca17c);
+  padding: 7px;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.content-wrapper {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  width: 100%;
+}
+
+.navbar-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-brand-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.navbar-brand-image {
+  height: 60px;
+  width: auto;
+  display: block;
+}
+
+/* --- Desktop Navigation --- */
+
+.nav-links-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-links li a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-md);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.nav-links li a:hover {
+  color: var(--color-cta);
+}
+
+/* --- Mobile Navigation -- */
+.mobile-nav-toggle {
+  display: none;
+  position: absolute;
+  z-index: 2000;
+  right: 1rem;
+  top: 1.5rem;
+  background: transparent;
+  border: 0;
+  width: 2rem;
+  aspect-ratio: 1;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+}
+
+.mobile-nav-toggle[aria-expanded="true"] {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M6 6l18 18M6 24L24 6'/%3e%3c/svg%3e");
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- START: DROPDOWN STYLES --- */
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.caret-icon {
+  font-size: 0.8em;
+  transition: transform 300ms ease-out;
+
+  /* --- THIS IS THE FIX --- */
+  /* It was 'display: none;' here and 'inline-block' in mobile. */
+  /* We move 'inline-block' here to make it the default. */
+  display: inline-block;
+}
+
+/* HIDE DROPDOWN BY DEFAULT */
+.dropdown-menu {
+  display: none;
+  list-style: none;
+  padding-left: 1.5rem;
+  margin: 0;
+}
+
+.dropdown-menu a {
+  opacity: 0.85;
+}
+
+.dropdown.open .dropdown-menu {
+  display: block;
+}
+
+.dropdown.open .caret-icon {
+  transform: rotate(180deg);
+}
+
+/* * DESKTOP DROPDOWN STYLES */
+@media (min-width: 768px) {
+  .dropdown {
+    position: relative;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+
+    background-color: rgba(2, 78, 57, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    padding: 0.5rem 0;
+    margin: 0;
+    min-width: 220px;
+    border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dropdown-menu a {
+    padding: 0.75rem 1.5rem;
+    width: 100%;
+    display: block;
+    opacity: 1;
+    color: var(--color-white);
+  }
+
+  /* DESKTOP HOVER LOGIC */
+  .dropdown.open .dropdown-menu {
+    display: none;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+  /* --- On desktop, the icon should NOT rotate on hover --- */
+  /* (We only want rotation when it's clicked on mobile) */
+  .dropdown:hover .caret-icon {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-white);
+  }
+}
+/* --- END: DROPDOWN STYLES --- */
+
+/* --- Media Query for Mobile --- */
+@media (max-width: 768px) {
+  .mobile-nav-toggle {
+    display: block;
+  }
+
+  .nav-links-container {
+    position: fixed;
+    inset: 0 0 0 30%;
+    background: var(--color-dark-section-bg);
+    box-shadow: var(--shadow-md);
+    transform: translateX(100%);
+    transition: transform 350ms ease-out;
+    flex-grow: 0;
+    display: block;
+    justify-content: flex-start;
+  }
+
+  .nav-links-container[data-visible="true"] {
+    transform: translateX(0%);
+  }
+
+  .nav-links {
+    flex-direction: column;
+    padding: min(20vh, 10rem) 2rem;
+    gap: 0;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: block;
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* --- 2. On mobile, just make the icon a bit bigger --- */
+  .caret-icon {
+    /* 'display: inline-block;' is no longer needed here */
+    font-size: 1rem;
+  }
+
+  .dropdown-menu a {
+    padding: 1.5rem 0 1.5rem 1.5rem;
+    font-size: 1.1rem;
+    border: none;
+  }
+
+  .dropdown.open .dropdown-menu li:last-child a {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-links li:first-child a {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-links a:hover {
+    color: var(--color-gold-heading);
+    background-color: transparent;
+  }
+
+  .dropdown-menu a:hover {
+    background-color: transparent;
+  }
+}

@@ -1,0 +1,100 @@
+import React, { useState, useEffect } from "react";
+
+import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import "./Gallery.css";
+
+const API_URL = import.meta.env.VITE_STRAPI_API_URL || "http://localhost:1337";
+
+function Gallery() {
+  const [galleryImages, setGalleryImages] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const [open, setOpen] = useState(false);
+  const [index, setIndex] = useState(0);
+  const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
+
+  // Fetch images from Strapi
+  useEffect(() => {
+    async function fetchGalleryImages() {
+      try {
+        setLoading(true);
+        const response = await fetch(`${API_URL}/api/gallery?populate=images`);
+        if (!response.ok) throw new Error("Failed to fetch gallery images.");
+
+        const apiData = await response.json();
+
+        const images = apiData.data?.images || apiData.data?.attributes?.images;
+        setGalleryImages(images.data || images || []);
+      } catch (error) {
+        console.error(error);
+        setGalleryImages([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchGalleryImages();
+  }, []);
+
+  // Format images for the lightbox (using full-size images)
+  const slides = galleryImages.map((img) => {
+    const imageUrl = img.attributes?.url || img.url;
+    return {
+      src: `${API_URL}${imageUrl}`,
+      alt: "Gallery image",
+    };
+  });
+
+  // Open the lightbox at the correct image index
+  const openLightbox = (imageIndex) => {
+    setIndex(imageIndex);
+    setOpen(true);
+  };
+
+  return (
+    <div
+      id="gallery"
+      className={`gallery-section ${isVisible ? "is-visible" : ""}`}
+      ref={sectionRef}
+    >
+      <div className="gallery-wrapper">
+        <h2>Gallery</h2>
+
+        {loading && <p className="gallery-loading">Loading Gallery...</p>}
+
+        <div className="gallery-grid">
+          {galleryImages.map((img, idx) => {
+            const thumbnailUrl =
+              img.attributes?.formats?.thumbnail?.url ||
+              img.formats?.thumbnail?.url ||
+              img.attributes?.url ||
+              img.url;
+            return (
+              <div
+                key={img.id}
+                className="gallery-item"
+                onClick={() => openLightbox(idx)}
+              >
+                <img
+                  src={`${API_URL}${thumbnailUrl}`}
+                  alt="Gallery thumbnail"
+                  loading="lazy"
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <Lightbox
+        open={open}
+        close={() => setOpen(false)}
+        slides={slides}
+        index={index}
+      />
+    </div>
+  );
+}
+
+export default Gallery;

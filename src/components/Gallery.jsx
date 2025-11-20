@@ -5,6 +5,8 @@ import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import "./Gallery.css";
 
+// NOTE: We don't use this API_URL to build image sources,
+// as Cloudinary returns absolute URLs. We keep it only for API calls.
 const API_URL = import.meta.env.VITE_STRAPI_API_URL || "https://localhost:1337";
 
 function Gallery() {
@@ -44,6 +46,7 @@ function Gallery() {
     // This looks for the URL in both old and new Strapi structures
     const imageUrl = img.attributes?.url || img.url;
     return {
+      // FIX 1: We use the absolute URL directly from Cloudinary
       src: imageUrl,
       alt: "Gallery image",
     };
@@ -68,11 +71,20 @@ function Gallery() {
 
         <div className="gallery-grid">
           {galleryImages.map((img, idx) => {
+            // --- QUALITY FIX ---
+            // We grab the formats object first
+            const formats = img.attributes?.formats || img.formats || {};
+
+            // We prioritize 'small' (crisp but fast).
+            // If 'small' doesn't exist, we try 'medium', then 'thumbnail', then original.
             const thumbnailUrl =
-              img.attributes?.formats?.thumbnail?.url ||
-              img.formats?.thumbnail?.url ||
+              formats.small?.url ||
+              formats.medium?.url ||
+              formats.thumbnail?.url ||
               img.attributes?.url ||
               img.url;
+            // -------------------
+
             return (
               <div
                 key={img.id}

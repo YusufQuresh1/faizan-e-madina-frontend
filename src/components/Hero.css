@@ -96,4 +96,8 @@
   .hero-subtitle {
     font-size: 0.8rem;
   }
+  .hero-section {
+    height: 45vh;
+    min-height: 300px;
+  }
 }

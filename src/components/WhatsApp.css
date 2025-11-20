@@ -113,12 +113,12 @@
 .whatsapp-image-container {
   opacity: 0;
   transform: translateX(-30px);
-  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+  transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
 .whatsapp-content {
   opacity: 0;
-  transform: translateY(20px); /* I'll have this slide up, it looks cleaner */
+  transform: translateY(20px);
   transition: opacity 1s ease-out, transform 1s ease-out;
 }
 

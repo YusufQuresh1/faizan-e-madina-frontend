@@ -10,8 +10,6 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-md);
-  /* --- FIX 1: REMOVED PADDING-TOP --- */
-  /* padding-top: 2rem; <-- GONE */
 }
 
 /* --- Mobile-First Horizontally Scrollable Calendar --- */
@@ -45,7 +43,7 @@
   .weekly-calendar {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0; /* Remove padding */
+    padding: 0;
     justify-content: center;
     flex-wrap: wrap;
     overflow-x: visible;
@@ -114,12 +112,10 @@
 
 /* --- START: NEW FULL-WIDTH STYLES --- */
 
-/* 1. Main Services "Hero" Container */
 .services-hero-container {
   position: relative;
 }
 
-/* 2. "Our Services" Heading (On-Image) */
 .services-hero-container h2 {
   position: absolute;
   width: 100%;
@@ -136,7 +132,8 @@
 
 .services-image {
   width: 100%;
-  height: 500px;
+  /* --- FIX: Reduced Desktop Height --- */
+  height: 450px; /* Was 500px. Reduces empty space globally. */
   object-fit: cover;
   display: block;
 }
@@ -163,7 +160,8 @@
   left: 0;
   width: 100%;
   z-index: 2;
-  padding-bottom: 2.5rem;
+  /* --- FIX: Increased Padding --- */
+  padding-bottom: 4rem; /* Was 2.5rem. Lifts the cards UP towards the heading. */
 }
 
 .service-item {
@@ -205,6 +203,14 @@
   line-height: 1.7;
 }
 
+/* --- FIX: Vertically Center the Cards relative to each other --- */
+.services-swiper .swiper-slide {
+  display: flex;
+  align-items: center; /* Vertical Center */
+  justify-content: center; /* Horizontal Center */
+  height: auto;
+}
+
 /* Swiper Arrows & Dots */
 .services-swiper .swiper-button-next,
 .services-swiper .swiper-button-prev {
@@ -234,20 +240,17 @@
 
 /* 3. "Weekly Events" Heading */
 .weekly-events-header {
-  /* --- FIX 1: Less Gap Above --- */
-  margin-top: 2.5rem; /* Was 3rem */
+  margin-top: 2.5rem;
   text-align: center;
-  /* --- FIX 2: More Gap Below --- */
-  margin-bottom: 3.5rem; /* Was 2.5rem */
+  margin-bottom: 3.5rem;
 }
 .weekly-events-header h2 {
   color: var(--color-gold-heading);
   font-family: "Merriweather", serif;
   font-size: 40px;
 }
-/* --- END: NEW FULL-WIDTH STYLES --- */
 
-/* --- ANIMATION STYLES (RE-ORDERED & SPLIT) --- */
+/* --- ANIMATION STYLES --- */
 .services-hero-container {
   opacity: 0;
   transform: translateY(20px);
@@ -291,13 +294,12 @@
   transition-delay: 0.5s;
 }
 
-/* --- Scroll End Fix --- */
 .weekly-calendar.scrolled-to-end {
   -webkit-mask-image: none;
   mask-image: none;
 }
 
-/* --- Mobile Fixes --- */
+/* --- MOBILE FIXES --- */
 @media (max-width: 768px) {
   .services-hero-container h2 {
     font-size: 32px;
@@ -308,29 +310,35 @@
     font-size: 30px;
   }
 
+  /* --- FIX: Maintain Mobile Height --- */
   .services-image {
-    height: 400px;
+    height: 400px; /* Keeps mobile size correct */
+    object-position: center;
   }
 
+  /* Compact card styles */
   .service-item {
     width: 92%;
-    padding: 1.5rem;
-    gap: 1.25rem;
-  }
-
-  .service-item h3 {
-    font-size: 1.2rem;
-  }
-
-  .service-item p {
-    font-size: 0.9rem;
+    padding: 1.25rem;
+    gap: 1rem;
+    border-radius: var(--border-radius-md);
   }
 
   .service-icon {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    margin-top: 0;
   }
 
-  /* Hide arrows on mobile to save space */
+  .service-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .service-item p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
   .services-swiper .swiper-button-next,
   .services-swiper .swiper-button-prev {
     display: none;

@@ -5,7 +5,7 @@ import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import "./Gallery.css";
 
-const API_URL = import.meta.env.VITE_STRAPI_API_URL || "http://localhost:1337";
+const API_URL = import.meta.env.VITE_STRAPI_API_URL || "https://localhost:1337";
 
 function Gallery() {
   const [galleryImages, setGalleryImages] = useState([]);
@@ -20,11 +20,13 @@ function Gallery() {
     async function fetchGalleryImages() {
       try {
         setLoading(true);
+        // Ensure the API call is secure
         const response = await fetch(`${API_URL}/api/gallery?populate=images`);
         if (!response.ok) throw new Error("Failed to fetch gallery images.");
 
         const apiData = await response.json();
 
+        // This logic handles both Strapi v4 (attributes) and v5 (flat) responses
         const images = apiData.data?.images || apiData.data?.attributes?.images;
         setGalleryImages(images.data || images || []);
       } catch (error) {
@@ -39,9 +41,10 @@ function Gallery() {
 
   // Format images for the lightbox (using full-size images)
   const slides = galleryImages.map((img) => {
+    // This looks for the URL in both old and new Strapi structures
     const imageUrl = img.attributes?.url || img.url;
     return {
-      src: `${API_URL}${imageUrl}`,
+      src: imageUrl,
       alt: "Gallery image",
     };
   });
@@ -77,7 +80,7 @@ function Gallery() {
                 onClick={() => openLightbox(idx)}
               >
                 <img
-                  src={`${API_URL}${thumbnailUrl}`}
+                  src={thumbnailUrl}
                   alt="Gallery thumbnail"
                   loading="lazy"
                 />

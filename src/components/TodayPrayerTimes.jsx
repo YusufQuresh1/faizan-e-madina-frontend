@@ -52,7 +52,7 @@ function TodayPrayerTimes({ prayerData }) {
           now.getMonth() + 1
         }-${now.getFullYear()}`;
         const islamicDateResponse = await fetch(
-          `http://api.aladhan.com/v1/gToH?date=${todayFormatted}`
+          `https://api.aladhan.com/v1/gToH?date=${todayFormatted}`
         );
         if (!islamicDateResponse.ok) {
           throw new Error(

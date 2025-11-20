@@ -166,6 +166,12 @@
 .announcements-section.is-visible .announcement-card:nth-child(3) {
   transition-delay: 0.3s;
 }
+
+.no-announcements-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--color-text-light);
+}
 /* --- MOBILE RESPONSIVE STYLES --- */
 
 /* 1. On screens 600px or less, stack the announcement cards */

@@ -23,11 +23,13 @@ function PrayerTimes() {
         const API_URL =
           import.meta.env.VITE_STRAPI_API_URL || "http://localhost:1337";
         const timetableUrl = `${API_URL}/api/timetables?filters[year][$eq]=${currentYear}&filters[month][$eq]=${currentMonthName}&populate=timetableImage`;
+
         const response = await fetch(timetableUrl);
         if (!response.ok)
           throw new Error(`HTTP error! status: ${response.status}`);
 
         const apiData = await response.json();
+
         const currentTimetable = apiData?.data?.[0];
 
         if (currentTimetable) {
@@ -69,9 +71,7 @@ function PrayerTimes() {
     );
   }
 
-  const timetableFileUrl = timetable.timetableImage?.url
-    ? `http://localhost:1337${timetable.timetableImage.url}`
-    : "#";
+  const timetableFileUrl = timetable.timetableImage?.url || "#";
 
   return (
     <div className="prayer-times-section" id="prayer-times">
@@ -86,7 +86,7 @@ function PrayerTimes() {
             className="info-image"
           />
           <a
-            href={timetableFileUrl} // <-- USES DYNAMIC URL
+            href={timetableFileUrl} // <-- Now uses the direct, absolute Cloudinary URL
             target="_blank"
             rel="noopener noreferrer"
             className="btn timetable-btn overlay-btn"

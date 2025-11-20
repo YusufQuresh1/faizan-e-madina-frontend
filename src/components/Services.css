@@ -303,6 +303,7 @@
     font-size: 32px;
     top: 1rem;
   }
+
   .weekly-events-header h2 {
     font-size: 30px;
   }
@@ -310,20 +311,26 @@
   .services-image {
     height: 400px;
   }
+
   .service-item {
+    width: 92%;
     padding: 1.5rem;
     gap: 1.25rem;
   }
+
   .service-item h3 {
     font-size: 1.2rem;
   }
+
   .service-item p {
     font-size: 0.9rem;
   }
+
   .service-icon {
     font-size: 1.5rem;
   }
 
+  /* Hide arrows on mobile to save space */
   .services-swiper .swiper-button-next,
   .services-swiper .swiper-button-prev {
     display: none;

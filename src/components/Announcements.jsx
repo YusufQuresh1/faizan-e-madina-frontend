@@ -18,7 +18,7 @@ function Announcements() {
 
   // --- Pagination State ---
   const [currentPage, setCurrentPage] = useState(1);
-  const ANNOUNCEMENTS_PER_PAGE = 3; // Show 3 at a time
+  const ANNOUNCEMENTS_PER_PAGE = 3;
 
   useEffect(() => {
     async function fetchAnnouncements() {
@@ -47,10 +47,8 @@ function Announcements() {
 
   // --- Pagination Logic ---
   const totalPages = Math.ceil(announcements.length / ANNOUNCEMENTS_PER_PAGE);
-
   const startIndex = (currentPage - 1) * ANNOUNCEMENTS_PER_PAGE;
   const endIndex = startIndex + ANNOUNCEMENTS_PER_PAGE;
-
   const currentAnnouncements = announcements.slice(startIndex, endIndex);
 
   const goToNextPage = () => {
@@ -59,7 +57,6 @@ function Announcements() {
   const goToPrevPage = () => {
     setCurrentPage((prev) => Math.max(prev - 1, 1));
   };
-  // --- End Pagination Logic ---
 
   return (
     <div
@@ -70,80 +67,82 @@ function Announcements() {
       <div className="announcements-content-wrapper">
         <h2>Announcements</h2>
 
-        {/* This div is now a container for the list + controls */}
-        <div className="announcements-container">
-          <div
-            className="announcements-list"
-            // This key is the fix: It tells React to re-mount this
-            // component when the page changes, re-triggering animations.
-            key={currentPage}
-          >
-            {currentAnnouncements.map((announcement) => {
-              const publishedDate = announcement.publishedAt
-                ? new Date(announcement.publishedAt)
-                : null;
+        {/* --- CONDITIONAL RENDERING --- */}
+        {announcements.length > 0 ? (
+          /* IF THERE ARE ANNOUNCEMENTS: Show the Box & List */
+          <div className="announcements-container">
+            <div className="announcements-list" key={currentPage}>
+              {currentAnnouncements.map((announcement) => {
+                const publishedDate = announcement.publishedAt
+                  ? new Date(announcement.publishedAt)
+                  : null;
 
-              return (
-                <div key={announcement.id} className="announcement-card">
-                  <div className="announcement-date">
-                    {publishedDate ? (
-                      <>
-                        <span className="date-month-day">
-                          {publishedDate.toLocaleDateString(
-                            "en-GB",
-                            dateMonthDayOptions
-                          )}
-                        </span>
-                        <span className="date-year">
-                          {publishedDate.toLocaleDateString(
-                            "en-GB",
-                            dateYearOptions
-                          )}
-                        </span>
-                      </>
-                    ) : (
-                      <span>No Date</span>
-                    )}
-                  </div>
-                  <div className="announcement-main">
-                    <h3>{announcement.title}</h3>
-                    <div className="announcement-content">
-                      <ReactMarkdown>
-                        {convertBlocksToMarkdown(announcement.content)}
-                      </ReactMarkdown>
+                return (
+                  <div key={announcement.id} className="announcement-card">
+                    <div className="announcement-date">
+                      {publishedDate ? (
+                        <>
+                          <span className="date-month-day">
+                            {publishedDate.toLocaleDateString(
+                              "en-GB",
+                              dateMonthDayOptions
+                            )}
+                          </span>
+                          <span className="date-year">
+                            {publishedDate.toLocaleDateString(
+                              "en-GB",
+                              dateYearOptions
+                            )}
+                          </span>
+                        </>
+                      ) : (
+                        <span>No Date</span>
+                      )}
+                    </div>
+                    <div className="announcement-main">
+                      <h3>{announcement.title}</h3>
+                      <div className="announcement-content">
+                        <ReactMarkdown>
+                          {convertBlocksToMarkdown(announcement.content)}
+                        </ReactMarkdown>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* --- Pagination Controls --- */}
-          {totalPages > 1 && (
-            <div className="pagination-controls">
-              <button
-                className="pagination-btn"
-                onClick={goToPrevPage}
-                disabled={currentPage === 1}
-              >
-                <FaArrowLeft />
-                <span>Previous</span>
-              </button>
-              <span className="pagination-status">
-                Page {currentPage} of {totalPages}
-              </span>
-              <button
-                className="pagination-btn"
-                onClick={goToNextPage}
-                disabled={currentPage === totalPages}
-              >
-                <span>Next</span>
-                <FaArrowRight />
-              </button>
+                );
+              })}
             </div>
-          )}
-          {/* --- End Controls --- */}
-        </div>
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className="pagination-controls">
+                <button
+                  className="pagination-btn"
+                  onClick={goToPrevPage}
+                  disabled={currentPage === 1}
+                >
+                  <FaArrowLeft />
+                  <span>Previous</span>
+                </button>
+                <span className="pagination-status">
+                  Page {currentPage} of {totalPages}
+                </span>
+                <button
+                  className="pagination-btn"
+                  onClick={goToNextPage}
+                  disabled={currentPage === totalPages}
+                >
+                  <span>Next</span>
+                  <FaArrowRight />
+                </button>
+              </div>
+            )}
+          </div>
+        ) : (
+          /* ELSE (NO ANNOUNCEMENTS): Show clean text, NO BOX */
+          <p className="no-announcements-message">
+            There are no new announcements at this time.
+          </p>
+        )}
 
         <WhatsApp />
       </div>

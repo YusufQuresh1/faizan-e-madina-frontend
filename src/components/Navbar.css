@@ -107,10 +107,6 @@
 .caret-icon {
   font-size: 0.8em;
   transition: transform 300ms ease-out;
-
-  /* --- THIS IS THE FIX --- */
-  /* It was 'display: none;' here and 'inline-block' in mobile. */
-  /* We move 'inline-block' here to make it the default. */
   display: inline-block;
 }
 
@@ -126,6 +122,7 @@
   opacity: 0.85;
 }
 
+/* Default Open State (Mobile) */
 .dropdown.open .dropdown-menu {
   display: block;
 }
@@ -145,6 +142,8 @@
     top: 100%;
     left: 0;
     z-index: 1000;
+
+    /* Important: Hide by default on desktop too */
     display: none;
 
     background-color: rgba(2, 78, 57, 0.8);
@@ -167,18 +166,15 @@
     color: var(--color-white);
   }
 
-  /* DESKTOP HOVER LOGIC */
-  .dropdown.open .dropdown-menu {
-    display: none;
-  }
+  /* --- THE FIX --- */
+  /* We REMOVED the :hover rule here. */
+  /* We now rely ONLY on the .open class (managed by React JS) */
 
-  .dropdown:hover .dropdown-menu {
+  .dropdown.open .dropdown-menu {
     display: block;
   }
 
-  /* --- On desktop, the icon should NOT rotate on hover --- */
-  /* (We only want rotation when it's clicked on mobile) */
-  .dropdown:hover .caret-icon {
+  .dropdown.open .caret-icon {
     transform: rotate(180deg);
   }
 
@@ -231,9 +227,8 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  /* --- 2. On mobile, just make the icon a bit bigger --- */
+  /* Mobile Icon Size */
   .caret-icon {
-    /* 'display: inline-block;' is no longer needed here */
     font-size: 1rem;
   }
 

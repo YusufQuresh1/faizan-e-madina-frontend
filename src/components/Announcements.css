@@ -35,7 +35,7 @@
   flex-direction: column;
   /* --- THIS IS THE FIX --- */
   justify-content: flex-start;
-  min-height: 400px; /* Was 450px */
+  min-height: 200px; /* Was 450px */
 }
 
 /* --- 2. Timeline-style Card (Unchanged) --- */

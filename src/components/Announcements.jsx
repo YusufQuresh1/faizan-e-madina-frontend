@@ -46,9 +46,15 @@ function Announcements() {
   };
 
   // --- Pagination Logic ---
-  const totalPages = Math.ceil(announcements.length / ANNOUNCEMENTS_PER_PAGE);
+  // Ensure totalPages is at least 1 to avoid "Page 1 of 0"
+  const totalPages = Math.max(
+    1,
+    Math.ceil(announcements.length / ANNOUNCEMENTS_PER_PAGE)
+  );
+
   const startIndex = (currentPage - 1) * ANNOUNCEMENTS_PER_PAGE;
   const endIndex = startIndex + ANNOUNCEMENTS_PER_PAGE;
+
   const currentAnnouncements = announcements.slice(startIndex, endIndex);
 
   const goToNextPage = () => {
@@ -69,7 +75,7 @@ function Announcements() {
 
         {/* --- CONDITIONAL RENDERING --- */}
         {announcements.length > 0 ? (
-          /* IF THERE ARE ANNOUNCEMENTS: Show the Box & List */
+          /* IF THERE ARE ANNOUNCEMENTS: Show the Box & List & Controls */
           <div className="announcements-container">
             <div className="announcements-list" key={currentPage}>
               {currentAnnouncements.map((announcement) => {
@@ -112,30 +118,33 @@ function Announcements() {
               })}
             </div>
 
-            {/* Pagination Controls */}
-            {totalPages > 1 && (
-              <div className="pagination-controls">
-                <button
-                  className="pagination-btn"
-                  onClick={goToPrevPage}
-                  disabled={currentPage === 1}
-                >
-                  <FaArrowLeft />
-                  <span>Previous</span>
-                </button>
-                <span className="pagination-status">
-                  Page {currentPage} of {totalPages}
-                </span>
-                <button
-                  className="pagination-btn"
-                  onClick={goToNextPage}
-                  disabled={currentPage === totalPages}
-                >
-                  <span>Next</span>
-                  <FaArrowRight />
-                </button>
-              </div>
-            )}
+            {/* --- Pagination Controls (ALWAYS VISIBLE) --- */}
+            <div className="pagination-controls">
+              <button
+                className="pagination-btn"
+                onClick={goToPrevPage}
+                // Disable if on page 1
+                disabled={currentPage === 1}
+              >
+                <FaArrowLeft />
+                <span>Previous</span>
+              </button>
+
+              <span className="pagination-status">
+                Page {currentPage} of {totalPages}
+              </span>
+
+              <button
+                className="pagination-btn"
+                onClick={goToNextPage}
+                // Disable if on the last page
+                disabled={currentPage === totalPages}
+              >
+                <span>Next</span>
+                <FaArrowRight />
+              </button>
+            </div>
+            {/* --- End Controls --- */}
           </div>
         ) : (
           /* ELSE (NO ANNOUNCEMENTS): Show clean text, NO BOX */

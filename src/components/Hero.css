@@ -101,3 +101,28 @@
     min-height: 300px;
   }
 }
+
+@media (min-width: 1600px) {
+  .hero-content {
+    max-width: 1400px;
+    padding: 0 2rem;
+  }
+
+  .hero-content h1 {
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+    letter-spacing: 4px;
+    margin-bottom: 1rem;
+  }
+
+  .hero-content h1::after {
+    width: 120px;
+    height: 4px;
+    bottom: 0px;
+  }
+}

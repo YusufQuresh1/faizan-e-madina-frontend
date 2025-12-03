@@ -1,17 +1,21 @@
 .today-times-container {
   background-color: var(--color-dark-section-bg);
+
+  background: linear-gradient(145deg, #1e4530 0%, #0d2016 100%);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+
   border-radius: var(--border-radius-lg);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   padding: 1.5rem;
   max-width: 600px;
 
-  /* These properties ensure the card maintains its height when empty */
   min-height: 559px;
   display: flex;
   flex-direction: column;
 }
 
-/* This styles the message when no prayer times are found */
 .placeholder-message {
   display: flex;
   flex-direction: column;
@@ -27,7 +31,29 @@
   margin: 0.5rem 0;
 }
 
-/* --- Countdown Section Styling --- */
+.current-date-section {
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid rgba(236, 194, 77, 0.2);
+}
+
+.current-date-section p {
+  font-family: "Merriweather", serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-gold-subheading);
+  margin: 0;
+}
+.current-date-section .islamic-date {
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+  font-family: var(--font-family-base);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0;
+}
+
 .countdown-section {
   text-align: center;
   border-bottom: 1px solid rgba(236, 194, 77, 0.2);
@@ -43,13 +69,13 @@
 }
 
 .countdown-timer {
-  font-size: 2.25rem;
+  font-size: 2.5rem;
   font-weight: 700;
   color: var(--color-gold-heading);
   letter-spacing: 2px;
+  text-shadow: 0 2px 10px rgba(236, 194, 77, 0.2);
 }
 
-/* --- Prayer List Styling --- */
 .prayers-list {
   display: flex;
   flex-direction: column;
@@ -68,8 +94,9 @@
 }
 
 .prayer-row.is-current {
-  background-color: rgba(236, 194, 77, 0.08); /* Subtle gold highlight */
-  border-radius: var(--border-radius-md);
+  background-color: rgba(236, 194, 77, 0.1);
+  border-left: 3px solid var(--color-gold-heading);
+  border-radius: 4px;
 }
 
 .prayer-info {
@@ -93,49 +120,25 @@
   display: flex;
   justify-content: space-between;
   text-align: right;
+  gap: 1rem;
 }
 
 .time-block {
   display: flex;
   flex-direction: column;
+  min-width: 60px;
 }
 
 .time-label {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  margin-bottom: 2px;
 }
 
 .time-value {
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: var(--color-white);
 }
-
-/* ADD THIS to TodayPrayerTimes.css */
-
-.current-date-section {
-  text-align: center;
-  margin-bottom: var(--spacing-md);
-  padding-bottom: var(--spacing-md);
-  border-bottom: 1px solid rgba(236, 194, 77, 0.1); /* Lighter border */
-}
-
-.current-date-section p {
-  font-family: "Merriweather", serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--color-gold-subheading);
-  margin: 0;
-}
-.current-date-section .islamic-date {
-  font-size: 0.95rem;
-  margin-top: 0.25rem;
-
-  /* These overrides will now work */
-  font-family: var(--font-family-base);
-  font-weight: 500;
-  margin-bottom: 0;
-}
-/* ADD THIS to TodayPrayerTimes.css */

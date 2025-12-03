@@ -40,7 +40,7 @@ function Hero() {
     >
       <div className="hero-content">
         <span className="hero-subtitle">Welcome to</span>
-        <h1>Faizan-e-Madina Southend</h1>
+        <h1>Faizane Madina Masjid Southend</h1>
       </div>
     </section>
   );

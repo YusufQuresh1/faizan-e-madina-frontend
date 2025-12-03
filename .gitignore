@@ -24,3 +24,10 @@ dist-ssr
 *.sw?
 
 .env*
+
+# Build artifacts
+dist/
+build/
+.cache/
+
+ecosystem.config.js

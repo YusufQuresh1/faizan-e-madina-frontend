@@ -11,6 +11,16 @@ import "./Footer.css";
 function Footer() {
   const currentYear = new Date().getFullYear();
 
+  // --- ANTI-SPAM VARIABLES ---
+  const emailUser = "faizanemadinasouthend";
+  const emailDomain = "gmail.com";
+
+  const landlineArea = "01702";
+  const landlineNum = "346392";
+
+  const mobilePrefix = "07427";
+  const mobileNum = "665750";
+
   return (
     <footer className="site-footer">
       <div className="footer-content">
@@ -21,20 +31,31 @@ function Footer() {
               <FaMapMarkerAlt />
               <span>53-55 Milton Road, Westcliff-on-Sea, SS0 7JP</span>
             </li>
+
+            {/* 1. Landline Obfuscation */}
             <li>
               <FaPhone />
-              <a href="tel:01702346392">01702 346392 (Telephone)</a>
-            </li>
-            <li>
-              <FaMobileAlt />
-              <a href="tel:07427665750">07427 665750 (Mobile)</a>
-            </li>
-            <li>
-              <FaEnvelope />
-              <a href="mailto:faizanemadinasouthend@gmail.com">
-                faizanemadinasouthend@gmail.com
+              <a href={`tel:${landlineArea}${landlineNum}`}>
+                {landlineArea} {landlineNum} (Telephone)
               </a>
             </li>
+
+            {/* 2. Mobile Obfuscation */}
+            <li>
+              <FaMobileAlt />
+              <a href={`tel:${mobilePrefix}${mobileNum}`}>
+                {mobilePrefix} {mobileNum} (Mobile)
+              </a>
+            </li>
+
+            {/* 3. Email Obfuscation */}
+            <li>
+              <FaEnvelope />
+              <a href={`mailto:${emailUser}@${emailDomain}`}>
+                {emailUser}@{emailDomain}
+              </a>
+            </li>
+
             <li>
               <FaWhatsapp />
               <a
@@ -49,8 +70,8 @@ function Footer() {
         </div>
       </div>
       <div className="footer-copyright">
-        &copy; {currentYear} Faizan-e-Madina Southend (Dawat-e-Islami). All
-        Rights Reserved.
+        &copy; {currentYear} Faizane Madina Masjid Southend (Dawat-e-Islami).
+        All Rights Reserved.
       </div>
     </footer>
   );

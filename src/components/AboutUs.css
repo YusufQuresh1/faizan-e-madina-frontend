@@ -1,15 +1,14 @@
 /* src/components/AboutUs.css */
 
 .about-section {
-  background-color: #f3f4f6;
   padding-top: 1rem;
+  margin-top: 1rem;
   padding-bottom: 3rem;
 }
 
 .about-wrapper {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0 var(--spacing-md);
 }
 
 .about-section h2 {
@@ -83,7 +82,7 @@
   }
 
   .about-section p.about-text {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .about-image-wrapper {

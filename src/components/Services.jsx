@@ -18,7 +18,6 @@ import servicesImage from "../assets/mosque_inside.webp";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 import "./Services.css";
 
-// (getIconForService function remains the same)
 const getIconForService = (title) => {
   switch (title) {
     case "Daily Prayers":
@@ -36,7 +35,6 @@ const getIconForService = (title) => {
   }
 };
 
-// (getSortableTime function remains the same)
 const getSortableTime = (timeString) => {
   if (!timeString) return 9999;
   if (timeString.toLowerCase().startsWith("after")) return 9999;
@@ -55,7 +53,6 @@ function Services() {
   const [weeklyEvents, setWeeklyEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // (All other hooks are unchanged)
   const [heroRef, isHeroVisible] = useIntersectionObserver({ threshold: 0.2 });
   const [calendarAnimRef, isCalendarVisible] = useIntersectionObserver({
     threshold: 0.1,
@@ -63,7 +60,6 @@ function Services() {
   const calendarScrollRef = useRef(null);
   const [isScrolledToEnd, setIsScrolledToEnd] = useState(false);
 
-  // (useEffect for data fetching is unchanged)
   useEffect(() => {
     async function fetchData() {
       try {
@@ -97,7 +93,6 @@ function Services() {
     fetchData();
   }, []);
 
-  // (useEffect for scroll listener is unchanged)
   useEffect(() => {
     const calendarElement = calendarScrollRef.current;
     const handleScroll = () => {
@@ -121,10 +116,6 @@ function Services() {
     };
   }, [loading]);
 
-  // --- THIS IS THE FIX ---
-  // If we are loading, we return a simple placeholder.
-  // This PREVENTS the Swiper component from trying to render
-  // with an empty array.
   if (loading) {
     return (
       <div
@@ -142,7 +133,6 @@ function Services() {
       </div>
     );
   }
-  // --- END OF THE FIX ---
 
   const serviceOrder = [
     "Daily Prayers",
@@ -152,8 +142,6 @@ function Services() {
     "Private Gatherings",
   ];
 
-  // By the time the code gets here, 'loading' is false
-  // and 'serviceDetails' is populated (even if it's just [])
   return (
     <div id="services" className="services-section">
       <div

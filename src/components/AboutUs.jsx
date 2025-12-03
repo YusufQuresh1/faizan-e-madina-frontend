@@ -18,7 +18,7 @@ function AboutUs() {
         <div className="about-content-grid">
           <div className="about-text-content">
             <p className="about-text">
-              Welcome to Faizan-e-Madina Southend. We are a proud part of{" "}
+              Welcome to Faizane Madina Masjid Southend. We are a proud part of{" "}
               <strong>Dawat-e-Islami</strong>, a global, non-political Islamic
               organisation working for the propagation of the Quran and Sunnah.
             </p>
@@ -26,8 +26,8 @@ function AboutUs() {
             <p className="about-text">
               As a significant part of this mission,{" "}
               <strong>
-                Faizan-e-Madina Southend was the fourth Dawat-e-Islami mosque
-                established in the United Kingdom.
+                Faizane Madina Masjid Southend was the fourth Dawat-e-Islami
+                mosque established in the United Kingdom.
               </strong>
             </p>
 

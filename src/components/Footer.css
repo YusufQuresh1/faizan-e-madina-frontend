@@ -1,7 +1,5 @@
 .site-footer {
-  background-color: var(
-    --color-text
-  ); /* Uses the soft dark grey from our theme */
+  background-color: var(--color-text);
   color: rgba(255, 255, 255, 0.8);
   padding: 3rem var(--spacing-md);
 }
@@ -62,4 +60,30 @@
   padding-top: 2rem;
   font-size: 0.9rem;
   opacity: 0.7;
+}
+
+@media (min-width: 1600px) {
+  .footer-content {
+    max-width: 1600px;
+    padding-bottom: 3rem;
+  }
+
+  .site-footer h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .site-footer p,
+  .contact-list li {
+    font-size: 1.1rem;
+  }
+
+  .contact-list li svg {
+    font-size: 1.3rem;
+  }
+
+  .footer-copyright {
+    font-size: 1rem;
+    padding-top: 3rem;
+  }
 }

@@ -1,18 +1,15 @@
-/* --- Main Section Container --- */
 .services-section {
   background-color: var(--color-dark-section-bg);
   padding-bottom: 3rem;
   overflow-x: hidden;
 }
 
-/* --- Wrapper for the CALENDAR section --- */
 .calendar-wrapper {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-md);
 }
 
-/* --- Mobile-First Horizontally Scrollable Calendar --- */
 .weekly-calendar {
   display: flex;
   flex-wrap: nowrap;
@@ -38,7 +35,6 @@
   flex-shrink: 0;
 }
 
-/* --- Responsive Media Queries --- */
 @media (min-width: 992px) {
   .weekly-calendar {
     max-width: 1200px;
@@ -57,7 +53,6 @@
   }
 }
 
-/* --- Styles for content inside calendar cards --- */
 .events-list {
   display: flex;
   flex-direction: column;
@@ -110,7 +105,7 @@
   color: var(--event-color-ijtimah);
 }
 
-/* --- START: NEW FULL-WIDTH STYLES --- */
+/* --- SERVICES HERO --- */
 
 .services-hero-container {
   position: relative;
@@ -132,8 +127,7 @@
 
 .services-image {
   width: 100%;
-  /* --- FIX: Reduced Desktop Height --- */
-  height: 450px; /* Was 500px. Reduces empty space globally. */
+  height: 480px;
   object-fit: cover;
   display: block;
 }
@@ -160,13 +154,12 @@
   left: 0;
   width: 100%;
   z-index: 2;
-  /* --- FIX: Increased Padding --- */
-  padding-bottom: 4rem; /* Was 2.5rem. Lifts the cards UP towards the heading. */
+  padding-bottom: 2rem;
 }
 
 .service-item {
   width: 100%;
-  max-width: 700px;
+  max-width: 750px;
   margin: 0 auto;
   background-color: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(12px);
@@ -203,15 +196,13 @@
   line-height: 1.7;
 }
 
-/* --- FIX: Vertically Center the Cards relative to each other --- */
 .services-swiper .swiper-slide {
   display: flex;
-  align-items: center; /* Vertical Center */
-  justify-content: center; /* Horizontal Center */
+  align-items: center;
+  justify-content: center;
   height: auto;
 }
 
-/* Swiper Arrows & Dots */
 .services-swiper .swiper-button-next,
 .services-swiper .swiper-button-prev {
   color: var(--color-white);
@@ -224,10 +215,10 @@
 }
 
 .services-swiper .swiper-button-prev {
-  left: calc(50% - 420px);
+  left: calc(50% - 450px);
 }
 .services-swiper .swiper-button-next {
-  right: calc(50% - 420px);
+  right: calc(50% - 450px);
 }
 
 .services-swiper .swiper-pagination-bullet {
@@ -238,7 +229,6 @@
   background: var(--color-gold-heading);
 }
 
-/* 3. "Weekly Events" Heading */
 .weekly-events-header {
   margin-top: 2.5rem;
   text-align: center;
@@ -250,7 +240,7 @@
   font-size: 40px;
 }
 
-/* --- ANIMATION STYLES --- */
+/* --- ANIMATIONS --- */
 .services-hero-container {
   opacity: 0;
   transform: translateY(20px);
@@ -299,7 +289,78 @@
   mask-image: none;
 }
 
-/* --- MOBILE FIXES --- */
+@media (min-width: 1600px) {
+  .services-image {
+    height: 700px;
+  }
+
+  .service-item {
+    max-width: 1000px;
+    padding: 3rem;
+    gap: 2rem;
+  }
+
+  .service-icon {
+    font-size: 3rem;
+  }
+  .service-item h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .service-item p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+  }
+
+  .services-hero-container h2 {
+    font-size: 64px;
+
+    top: 4rem;
+  }
+
+  .services-slider-container {
+    padding-bottom: 10rem;
+  }
+
+  .services-swiper .swiper-button-prev {
+    left: calc(50% - 580px);
+  }
+  .services-swiper .swiper-button-next {
+    right: calc(50% - 580px);
+  }
+
+  .weekly-events-header h2 {
+    font-size: 50px;
+    margin-bottom: 4rem;
+  }
+
+  .calendar-wrapper {
+    max-width: 1600px;
+    padding: 0 2rem;
+  }
+
+  .weekly-calendar {
+    max-width: 1600px;
+
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .calendar-day {
+    flex: 0 0 240px;
+
+    height: auto;
+  }
+
+  .event-card h4 {
+    font-size: 1.1rem;
+  }
+  .event-card p {
+    font-size: 0.95rem;
+  }
+}
+
 @media (max-width: 768px) {
   .services-hero-container h2 {
     font-size: 32px;
@@ -310,13 +371,11 @@
     font-size: 30px;
   }
 
-  /* --- FIX: Maintain Mobile Height --- */
   .services-image {
-    height: 400px; /* Keeps mobile size correct */
+    height: 400px;
     object-position: center;
   }
 
-  /* Compact card styles */
   .service-item {
     width: 92%;
     padding: 1.25rem;

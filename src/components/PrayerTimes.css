@@ -1,90 +1,170 @@
-.prayer-times-section {
-  padding: 4rem 0;
-  background-color: #f3f4f6;
+.prayer-section-wrapper {
+  padding: 4rem 1rem;
+  background-color: #f8fafc;
+  width: 100%;
 }
-.prayer-times-grid {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  gap: 2rem;
-  max-width: 1100px;
+
+.prayer-content-grid {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
-}
-
-.prayer-times-card,
-.prayer-times-grid .today-times-container {
-  flex: 1;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e0e0e0;
-  position: relative;
-  overflow: hidden;
-}
-
-.prayer-times-card.image-card {
-  background-color: #eee;
-  padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  gap: 3rem;
+}
+
+.left-column {
+  width: 100%;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.jummah-info-card {
+  border-top: 1px solid #e2e8f0;
+  padding-left: 0.8rem;
+  display: flex;
   align-items: center;
-  border-top: 10px solid var(--color-primary);
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding-top: 2.5rem;
 }
 
-.info-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.jummah-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
-.prayer-times-card.image-card::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 60%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
-  z-index: 1;
-  border-radius: 0 0 12px 12px;
-}
-
-/* --- Button Styles --- */
-.timetable-btn.overlay-btn {
-  position: relative;
-  z-index: 2;
-  margin-bottom: 5.5rem;
+.jummah-details h4 {
+  margin: 0 0 0.5rem 0;
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--color-gold-subheading);
+  padding-bottom: 2px;
   display: inline-block;
-  padding: 1rem 2rem;
+}
+
+.jummah-times {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.j-time-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  font-size: 1.05rem;
+  color: #333;
+}
+
+.j-label {
+  font-weight: 600;
+  color: #555;
+}
+.j-time {
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+
+.timetable-btn {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
   background-color: var(--color-primary);
   color: white;
+  border: 1px solid var(--color-primary);
   text-decoration: none;
   border-radius: 8px;
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease-in-out,
-    box-shadow 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-.timetable-btn.overlay-btn:hover {
-  background-color: var(--color-primary-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
 }
 
-@media (max-width: 992px) {
-  .prayer-times-grid {
-    flex-direction: column;
-    align-items: center;
+.timetable-btn:hover {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(4, 120, 87, 0.3);
+  color: white;
+}
+
+@media (min-width: 1024px) {
+  .prayer-content-grid {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    align-items: start;
+    gap: 4rem;
   }
-  .prayer-times-card,
-  .prayer-times-grid .today-times-container {
+}
+
+@media (min-width: 1600px) {
+  .prayer-content-grid {
+    max-width: 1600px;
+    grid-template-columns: 480px 1fr;
+    gap: 6rem;
+  }
+
+  .jummah-info-card {
+    gap: 3rem;
+  }
+
+  .timetable-btn {
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .jummah-info-card {
+    order: 1;
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
+    padding-left: 0;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .jummah-details {
+    align-items: center;
     width: 100%;
-    max-width: 600px;
-    min-height: 400px;
+  }
+
+  .j-time-row {
+    justify-content: center;
+  }
+
+  .about-us-wrapper {
+    order: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .jummah-info-card {
+    gap: 1.5rem;
+  }
+
+  .timetable-btn {
+    width: 100%;
+    text-align: center;
   }
 }

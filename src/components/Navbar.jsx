@@ -34,12 +34,12 @@ function Navbar() {
       e.preventDefault();
       setActiveDropdown(activeDropdown === menuName ? null : menuName);
     }
-    // On Desktop, we do nothing here. The link works normally.
   };
 
   return (
     <nav className="navbar">
       <div className="content-wrapper">
+        {/* LOGO SECTION */}
         <div className="navbar-header">
           <a href="#home" className="navbar-brand-link" onClick={closeAllMenus}>
             <img
@@ -50,6 +50,7 @@ function Navbar() {
           </a>
         </div>
 
+        {/* MOBILE TOGGLE (Hidden on Desktop) */}
         <button
           className="mobile-nav-toggle"
           aria-controls="primary-navigation"
@@ -62,6 +63,7 @@ function Navbar() {
           <span className="sr-only">Menu</span>
         </button>
 
+        {/* LINKS SECTION */}
         <div className="nav-links-container" data-visible={isNavVisible}>
           <ul id="primary-navigation" className="nav-links">
             <li>
@@ -70,12 +72,11 @@ function Navbar() {
               </a>
             </li>
 
-            {/* --- DROPDOWN 1: ABOUT --- */}
+            {/* DROPDOWN 1: ABOUT */}
             <li
               className={
                 activeDropdown === "about" ? "dropdown open" : "dropdown"
               }
-              // Add Mouse Events Here
               onMouseEnter={() => handleMouseEnter("about")}
               onMouseLeave={handleMouseLeave}
             >
@@ -105,14 +106,13 @@ function Navbar() {
               </ul>
             </li>
 
-            {/* --- DROPDOWN 2: ANNOUNCEMENTS --- */}
+            {/* DROPDOWN 2: ANNOUNCEMENTS */}
             <li
               className={
                 activeDropdown === "announcements"
                   ? "dropdown open"
                   : "dropdown"
               }
-              // Add Mouse Events Here
               onMouseEnter={() => handleMouseEnter("announcements")}
               onMouseLeave={handleMouseLeave}
             >
@@ -125,7 +125,6 @@ function Navbar() {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  {/* Clicking this now FORCEFULLY closes the menu */}
                   <a href="#announcements" onClick={closeAllMenus}>
                     Latest News
                   </a>

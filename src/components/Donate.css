@@ -30,7 +30,6 @@
 .donate-section-button {
   background-color: var(--color-gold-heading);
   color: var(--color-cta-text);
-
   display: inline-block;
   font-size: 1.1rem;
   font-weight: 600;
@@ -39,11 +38,23 @@
   text-decoration: none;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   box-shadow: var(--shadow-md);
+
+  flex-grow: 1;
+  flex-basis: 200px;
+  text-align: center;
 }
 
 .donate-section-button:hover {
+  background-color: rgba(255, 193, 7, 0.1);
+  border: 2px solid var(--color-cta);
+  color: var(--color-cta);
   transform: translateY(-3px);
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2), 0 4px 6px -4px rgb(0 0 0 / 0.2);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2);
+
+  border: 2px solid transparent;
+}
+.donate-section-button:hover {
+  border-color: var(--color-cta);
 }
 
 .separator {
@@ -65,7 +76,6 @@
 .separator:not(:empty)::before {
   margin-right: 1em;
 }
-
 .separator:not(:empty)::after {
   margin-left: 1em;
 }
@@ -117,21 +127,7 @@
   gap: 1rem;
 }
 
-.donate-section-button:hover {
-  background-color: rgba(255, 193, 7, 0.1);
-  border: 2px solid var(--color-cta);
-  color: var(--color-cta);
-  transform: translateY(-2px);
-}
-
-.donate-section-button {
-  flex-grow: 1;
-  flex-basis: 200px;
-  text-align: center;
-}
-
 /* --- ANIMATION STYLES --- */
-
 .animate-item {
   opacity: 0;
   transform: translateY(20px);
@@ -144,26 +140,56 @@
 }
 
 .donate-section.is-visible .animate-item:nth-child(1) {
-  /* h2 */
   transition-delay: 0.1s;
 }
 .donate-section.is-visible .animate-item:nth-child(2) {
-  /* p */
   transition-delay: 0.2s;
 }
 .donate-section.is-visible .animate-item:nth-child(3) {
-  /* p */
   transition-delay: 0.3s;
 }
 .donate-section.is-visible .animate-item:nth-child(4) {
-  /* button-group */
   transition-delay: 0.4s;
 }
 .donate-section.is-visible .animate-item:nth-child(5) {
-  /* separator */
   transition-delay: 0.5s;
 }
 .donate-section.is-visible .animate-item:nth-child(6) {
-  /* bank-details */
   transition-delay: 0.6s;
+}
+
+/* --- MONITOR OVERRIDE (1600px+) --- */
+@media (min-width: 1600px) {
+  .donate-section h2 {
+    font-size: 3rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .donate-section p {
+    font-size: 1.25rem;
+    max-width: 800px;
+  }
+
+  .bank-details {
+    padding: 2.5rem 4rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .detail-item {
+    padding: 1.5rem 0;
+  }
+
+  .detail-item strong {
+    font-size: 1.3rem;
+  }
+
+  .detail-item span {
+    font-size: 1.1rem;
+  }
+
+  .donate-section-button {
+    font-size: 1.2rem;
+    padding: 1.2rem 3rem;
+  }
 }

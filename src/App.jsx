@@ -19,12 +19,8 @@ function App() {
           <Hero />
         </section>
 
-        <section id="prayer-times" className="section">
+        <section id="prayer-times" className="section prayer-section-wrapper">
           <PrayerTimes />
-        </section>
-
-        <section id="about-us" className="section">
-          <AboutUs />
         </section>
 
         <section id="services" className="section">

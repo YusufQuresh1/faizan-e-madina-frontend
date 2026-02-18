@@ -35,8 +35,6 @@ function App() {
           <PrayerTimes />
         </section>
 
-        <RamadanCountdown />
-
         {/* LAZY ZONE: Loaded in background */}
         <Suspense fallback={<SectionLoader />}>
           <section id="services" className="section">
